@@ -1,0 +1,276 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+
+$header-height: 50px; // ヘッダー高さ
+$footer-height: 50px; // フッター高さ
+$sub-height: 70px;    // サブコンテナー高さ
+$button-height: 60px; // ボタン高さ
+$button-width: 100px; // ボタン幅
+$button-color: #0077ff; // ボタン背景色
+
+$qol-color: #3fbf1f;
+$link-color: #0d6efd;
+$link-hover-color: #0a58ca;
+
+body {
+  font-family: "Kosugi Maru", 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+// Googleログイン
+button.google-login {
+  border: none;
+  background-color: transparent;
+  color: $link-color;
+  border-radius: 32px;
+  margin: 10px 0;
+  padding: 10px 20px;  
+
+  // リンクカラー
+  &:hover {
+    color: $link-hover-color;
+  }
+
+  // テキスト余白
+  span {
+    margin-left: 10px;
+  }
+
+  // タップ背景色
+  &.tap {
+    background-color: $button-color;
+    color: white;
+  }
+}
+
+// マージン下0
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: 0;
+}
+
+.wrap-spinner {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(150,150,150,0.8);
+}
+// ヘッダー
+#header {
+  height: $header-height;
+  background-color: $qol-color;
+  user-select: none;  // 文字選択禁止
+
+  // タイトルサイズ
+  .title {
+    font-size: 16px;
+  }
+
+  // 生徒編集ボタンの影なし
+  button.btn:focus {
+    box-shadow: none;
+  }
+}
+
+// フッター
+#footer {
+  display: flex;
+  justify-content: space-around;
+  height: $footer-height;
+  background-color: white;
+  box-shadow: 0 10px 25px 0 rgb(0 0 0 / 50%);
+  user-select: none;  // 文字選択禁止
+
+  .menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    border-right: 1px solid #dee2e6;
+  }
+
+  div:last-child {
+    border: none;
+  }
+}
+#footer.container-fluid {
+  padding: 0;
+}
+
+// メインコンテンツ
+main {
+  margin-top: $header-height;
+  margin-bottom: $footer-height;
+  user-select: none;  // 文字選択禁止
+}
+
+// 生徒リスト2カラム表示
+.slist.list-group {
+  display: block; // flexboxをキャンセル
+}
+.slist .list-group-item {
+  width: 50%;
+  float: left;
+}
+
+// 生徒リスト
+.slist, .edit-koma-list {
+  // 人型アイコン
+  img {
+    height: 50px;
+  }
+  // 生徒リスト調整
+  .list-group-item {
+    padding: .5rem .5rem;
+  }
+  // かな
+  .kana {
+    font-size: .7rem;
+  }
+  .memo {
+    font-size: .7rem;
+  }
+  // 枠線
+  .list-group-item {
+    border: none;
+  }
+  // マウスポインタ
+  li, li label, li label input {
+    cursor: pointer;
+  }
+}
+
+// コマの生徒リスト
+.slist.koma {
+  // 人型アイコン
+  img {
+    height: 60px;
+  }
+}
+
+// コマ編集リスト
+.edit-koma-list {
+  // チェックボックス大きさ
+  input[type='checkbox'] {
+    transform: scale(1.5);
+    margin: 0 20px;
+  }
+}
+
+// 記録リスト
+.rlist {
+  padding: 10px;
+  text-align: center;
+
+  // 記録メッセージのマウスポインタ
+  li {
+    cursor: pointer;
+  }
+
+  li.list-group-item {
+    border: none;
+    border-radius: 30px;
+    background-color: $qol-color;
+    color: white;
+    margin: 10px 0;
+    padding: 15px 20px;
+    display: table;
+    min-width: 100px;
+    text-align: left;
+  }
+}
+.rlist.list-group {
+  display: block;
+}
+
+// h1のマージン調整
+h1 {
+  margin-bottom: 0;
+}
+
+// サブコンテナー
+#sub-container {
+  bottom: $footer-height;
+  display: none;
+
+  textarea {
+    margin-right: .75rem;
+    height: $button-height;
+    width: calc(100vw - $button-width - .75rem - .75rem);
+    resize: none;
+  }
+  button {
+    height: $button-height;
+    width: calc($button-width - .75rem);
+    border-radius: $button-height/2;
+    border-width: 1px;
+
+    color: white;
+    background-color: $button-color;
+    border-width: 0;
+  }
+}
+
+// サブコンテナー表示時
+.show-sub {
+  // メインコンテンツ
+  main {
+    margin-bottom: $sub-height+$footer-height;
+  }
+
+  // サブコンテナーを表示する
+  #sub-container {
+    display: flex;
+    height: $sub-height;
+  }
+}
+
+// タップされたら点滅
+.rlist li.list-group-item.tap {
+  background-color: $button-color;
+}
+
+// メモ表示
+#header .memo {
+  color: white;
+}
+
+// 生徒追加アイコン
+.addStudent {
+  bottom: $footer-height + 20px;
+  left: unset;
+  right: 20px;
+  cursor: pointer;
+
+  // 生徒追加ボタンの影なし
+  button.btn:focus {
+    box-shadow: none;
+  }
+
+  svg {
+    padding: 10px;
+    border-radius: 30px;
+    background-color: $button-color;
+  }
+}
+
+// QRコード
+.qr-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  height: calc(100vh - $header-height - $footer-height);
+  justify-content: center;
+  align-items: center;  
+}
+
+#removeRecordModal {
+  user-select: none;  // 文字選択禁止
+}
